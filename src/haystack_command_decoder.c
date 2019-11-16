@@ -38,21 +38,19 @@ void haystack_command_decoder__discard(HaystackCommandDecoder_State* state) {
 void haystack_command_decoder__execute_pending(
     HaystackCommandDecoder_Config* config,
     HaystackCommandDecoder_State* state) {
-  if (!state->command_pending) {
+  if (!state->command_pending)
     return;
-  }
   state->command_pending = false;
   for (uint8_t index_scanner = 0;
        index_scanner < HAYSTACK_COMMAND_DECODER__BUFFER_SIZE; index_scanner++) {
     uint8_t buffer_value = state->buffer[index_scanner];
-    if (!buffer_value) {
+    if (!buffer_value)
       continue;
-    }
     for (uint8_t bit_scanner = 1, decoded_value = 0; bit_scanner != 0;
          bit_scanner = bit_scanner << 1, decoded_value++) {
-      if (buffer_value & bit_scanner) {
-        config->command_received((index_scanner << 3) | decoded_value);
-      }
+      if (!(buffer_value & bit_scanner))
+        continue;
+      config->command_received((index_scanner << 3) | decoded_value);
     }
     state->buffer[index_scanner] &= ~buffer_value;
   }
