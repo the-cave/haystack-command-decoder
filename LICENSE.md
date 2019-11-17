@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 
-_Copyright &copy; `2018`, `Sarun Rattanasiri`_  
+_Copyright &copy; `2019`, `Sarun Rattanasiri`_  
 _All rights reserved._
 
 Redistribution and use in source and binary forms, with or without modification,
