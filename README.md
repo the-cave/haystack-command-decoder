@@ -5,15 +5,14 @@ It is a library that adds a layer of safety to an existing serial interface so t
 
 ## Why do we need this?
 
-[UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) is fine when used by professionals, but for end-users, there are so many things that can go wrong. They can plug a UART device but launch an unrelated application that wrongly utilizes the UART, resulting in unexpected or unpredictable behaviors.
+[UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) is fine when used by professionals, but for end-users, there are so many things that can go wrong. They can plug a pair of UART devices together but launch an unrelated application that attempts to communicate via UART, resulting in unexpected or unpredictable behaviors.
 
 The issue stemmed from the UART itself.  
 Unlike [USB](https://en.wikipedia.org/wiki/USB) devices, which have descriptors, UART devices do not have a standard or a convention to provide distinguishing between devices.
-
-This library was designed to addresses this shortcoming.  
-Simply put, the library brings USB VID/PID to UART with simplicity for some certain use cases.
+This library was designed to addresses this shortcoming.
+Simply put, the library brings USB VID/PID equivalent to the UART devices.
  
-The library works by prefixing each command with a 128-bit key, which [long enough for everyone to randomly generated and used by themself without a centralized device registry](https://security.stackexchange.com/questions/35392), and provide collision resistance against all currently utilized UART protocols.
+The library works by prefixing each command with a 128-bit key, which [long enough for everyone to randomly generated and used by themself without a centralized device registry](https://en.wikipedia.org/wiki/Universally_unique_identifier#Collisions), and provide collision resistance against all currently utilized UART protocols.
 
 ## Compatabilities
 
