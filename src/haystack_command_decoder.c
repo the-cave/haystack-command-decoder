@@ -18,6 +18,9 @@ void haystack_command_decoder__push(HaystackCommandDecoder_Config* config,
   uint8_t matching_position = state->next_match;
   if (data == config->key[matching_position]) {
     matching_position++;
+  } else if (data == config->key[0]) {
+    state->next_match = 1;
+    return;
   } else {
     state->next_match = 0;
     return;
